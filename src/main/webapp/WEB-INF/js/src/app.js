@@ -18,5 +18,4 @@ define(function (require,exports,module) {
         })
         router.addRoutes(routes);
     });
-
 });
