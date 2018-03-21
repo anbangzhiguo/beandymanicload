@@ -2,6 +2,8 @@ package com.zzw.smartframework.logic;
 
 import org.springframework.context.ApplicationContext;
 
+import java.util.Map;
+
 public abstract class BaseLogic implements Logic {
 
     public ApplicationContext applicationContext;
@@ -10,4 +12,7 @@ public abstract class BaseLogic implements Logic {
     {
         this.applicationContext = applicationContext;
     }
+    
+    
+    public Map<String,Object> param;
 }

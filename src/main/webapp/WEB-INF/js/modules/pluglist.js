@@ -1,23 +1,32 @@
 define(function (require,exports,module) {
     var sTpl = require("templates/pluglist.html");
     require("modules/pluglist.css");
-    require("lib/layer/layer.js");
-    layer.config({
-        path: './js/lib/layer/'
-    });
-    
     var VueComponent = Vue.extend({
-        template: sTpl
-        ,methods:{
-            click1:function(){
-                this.msg = "zhang";
-                layer.msg("我是Bar页面");
+        template: sTpl,
+        methods:{
+            testClick:function(unit,method){
+                $.ajax({
+                    url:"/excute/"+unit+"/"+method,
+                    contentType:"application/json",
+                    type:"POST",
+                    data:this.param,
+                    success:function (res) {
+                        alert(res);
+                    }
+                });
             }
-        }
-        ,data:function(){
+        },
+        data:function(){
             return {
-                msg:"Bar页面"
+                pluglist:[],
+                param:""
             }
+        },
+        mounted: function () {
+            var self = this;
+            $.get("/getPlugs", function(res){
+                self.pluglist = res;
+            });
         }
     });
 

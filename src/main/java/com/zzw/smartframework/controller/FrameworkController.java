@@ -143,11 +143,13 @@ public class FrameworkController {
      * @param method
      * @return
      */
-    @RequestMapping("/excute/{unit}/{method}")
+    @RequestMapping(value = { "/excute/{unit}/{method}" })
     @ResponseBody
     public String beanLoad(
             @PathVariable("unit") String unit,
-            @PathVariable("method") String method ){
+            @PathVariable("method") String method,
+            @RequestBody(required=false) HashMap<String,Object> map
+    ){
 
         ApplicationContext applicationContext = CommonContextUtils.getApplicationContext();
         Map<String,HashMap<String,Object>> classListMap = (Map<String,HashMap<String,Object>>) applicationContext.getBean("plugLogicBean");
@@ -178,12 +180,12 @@ public class FrameworkController {
      * 获得插件列表
      * @return
      */
-    @RequestMapping("/getPlugs")
+    @RequestMapping(value = { "/getPlugs" },produces="application/json;charset=UTF-8")
     @ResponseBody
     public String getPlugs(){
         ApplicationContext applicationContext = CommonContextUtils.getApplicationContext();
         Map<String,HashMap<String,Object>> classListMap = (Map<String,HashMap<String,Object>>) applicationContext.getBean("plugLogicBean");
-        String s = JSON.toJSONString(classListMap);
+        String s = JSON.toJSONString(classListMap.values());
         return s;
     }
 

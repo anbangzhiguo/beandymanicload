@@ -1,3 +1,17 @@
-<form method="POST" enctype="multipart/form-data" action="/uploadPlug">
-    <p>文件：<input type="file" name="file" /><input type="submit" value="上传" /></p>
-</form>
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/uploadPlug">
+        <fieldset>
+            <legend>新建插件</legend>
+            文件：<input type="file" name="file" />
+            <input type="submit" value="上传" />
+        </fieldset>
+    </form>
+    <div>
+        <p v-for="(plug, index)  in pluglist">
+            {{index+1}} : {{plug.describe}}|{{plug.unit}}|{{plug.method}}|{{plug.class}}
+                参数：<input v-model="param"/>
+                <span class="plugbutton" v-on:click="testClick(plug.unit,plug.method)">测试</span>
+
+        </p>
+    </div>
+</div>
