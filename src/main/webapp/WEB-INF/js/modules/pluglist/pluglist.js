@@ -1,6 +1,6 @@
 define(function (require,exports,module) {
-    var sTpl = require("templates/pluglist.html");
-    require("modules/pluglist.css");
+    var sTpl = require("modules/pluglist/pluglist.html");
+    require("modules/pluglist/pluglist.css");
     var VueComponent = Vue.extend({
         template: sTpl,
         methods:{

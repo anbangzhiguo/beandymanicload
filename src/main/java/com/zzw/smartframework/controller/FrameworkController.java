@@ -148,26 +148,29 @@ public class FrameworkController {
     public String beanLoad(
             @PathVariable("unit") String unit,
             @PathVariable("method") String method,
-            @RequestBody(required=false) HashMap<String,Object> map
+            @RequestBody(required=false) HashMap<String,Object> param
     ){
 
         ApplicationContext applicationContext = CommonContextUtils.getApplicationContext();
         Map<String,HashMap<String,Object>> classListMap = (Map<String,HashMap<String,Object>>) applicationContext.getBean("plugLogicBean");
         HashMap<String, Object> stringObjectHashMap = classListMap.get(unit + "!!::!!" + method);
         Class aClass = (Class)stringObjectHashMap.get("class");
-        Object aaa = (applicationContext.getBean(aClass));
-        Method m = null;
-        Method m2 = null;
+        Object logic = (applicationContext.getBean(aClass));
+        Method setApplicationContext = null;
+        Method setParam = null;
+        Method excute = null;
         try {
-            m2 = aClass.getMethod("setApplicationContext", ApplicationContext.class);
-            m = aClass.getMethod("excute", null);
+            setApplicationContext = aClass.getMethod("setApplicationContext", ApplicationContext.class);
+            setParam = aClass.getMethod("setParam", HashMap.class);
+            excute = aClass.getMethod("excute", null);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
         Object ret = null;
         try {
-            m2.invoke(aaa,applicationContext);
-            ret = m.invoke(aaa, null);
+            setApplicationContext.invoke(logic,applicationContext);
+            setParam.invoke(logic,param);
+            ret = excute.invoke(logic, null);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
