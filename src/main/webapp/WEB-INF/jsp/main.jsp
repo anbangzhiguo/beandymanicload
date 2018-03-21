@@ -25,7 +25,7 @@
 <body>
 
     <div id="app">
-        <div id="menu"><mymenu></mymenu></div>
+        <div id="menu"><mymenu ref="freshdata"></mymenu></div>
         <div id="content"><router-view></router-view></div>
     </div>
     <script src="/js/lib/jquery-1.11.2.js"></script>
@@ -34,8 +34,11 @@
     <script src="/js/lib/vue-router.js"></script>
     <script>
         var gMain = {
-            verson:"1.0"
-            ,basePath:"/vue+seajs/"
+            verson:"1.0",
+            basePath:"/vue+seajs/",
+            freshRoute:function () {
+
+            }
         };
         seajs.config({
             base: "/js"
@@ -47,7 +50,10 @@
         });
 
         $(function () {
-            seajs.use(["src/app.js"]);
+            seajs.use(["src/app.js"],function (app) {
+                gMain.freshRoute = app.freshRoutes;
+                gMain.app = app.app;
+            });
         });
     </script>
 </body>

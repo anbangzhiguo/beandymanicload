@@ -2,6 +2,7 @@ package com.zzw.smartframework.logic;
 
 import org.springframework.context.ApplicationContext;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class BaseLogic implements Logic {
@@ -13,7 +14,7 @@ public abstract class BaseLogic implements Logic {
     {
         this.applicationContext = applicationContext;
     }
-    public void setParam(Map<String, Object> param) {
+    public void setParam(HashMap param) {
         this.param = param;
     }
 }

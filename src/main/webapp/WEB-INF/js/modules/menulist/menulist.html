@@ -1,0 +1,9 @@
+<div>
+    <p v-for="(menu, index) in menulist">
+        {{index+1}} : {{menu.describe}}|{{menu.code}}
+    </p>
+    code:    <input v-model="code"></input>
+    js:      <input v-model="js"></input>
+    describe:<input v-model="describe"></input>
+    <span v-on:click="addMenu">增加目录</span>
+</div>

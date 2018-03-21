@@ -216,4 +216,22 @@ public class FrameworkController {
     }
 
 
+    @RequestMapping(value = { "/addMenus" },produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String addMenus(@RequestBody(required=false) HashMap<String,Object> param){
+        ApplicationContext applicationContext = CommonContextUtils.getApplicationContext();
+        List<HashMap<String,Object>> classListMap = (List<HashMap<String,Object>>)applicationContext.getBean("menuBean");
+
+        HashMap<String,Object> classHashMap  = new HashMap<>();
+        classHashMap.put("code",param.get("code"));
+        classHashMap.put("js",param.get("js"));
+        classHashMap.put("describe",param.get("describe"));
+        classHashMap.put("subList",null);
+        classListMap.add(classHashMap);
+
+        String s = JSON.toJSONString(classListMap);
+        return s;
+    }
+
+
 }

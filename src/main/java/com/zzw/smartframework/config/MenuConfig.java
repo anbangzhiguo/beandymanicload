@@ -36,5 +36,12 @@ public class MenuConfig implements ApplicationListener<ContextRefreshedEvent> {
         classHashMap.put("describe","前端插件");
         classHashMap.put("subList",null);
         classListMap.add(classHashMap);
+
+        classHashMap  = new HashMap<>();
+        classHashMap.put("code","menuList");
+        classHashMap.put("js","menulist");
+        classHashMap.put("describe","目录管理");
+        classHashMap.put("subList",null);
+        classListMap.add(classHashMap);
     }
 }
