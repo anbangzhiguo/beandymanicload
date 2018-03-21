@@ -11,7 +11,7 @@
 
         }
         #menu{
-            flex: 1;
+            flex: 2;
             background-color: #b3d4db;
             align-items: center;
         }
