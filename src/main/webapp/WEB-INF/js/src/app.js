@@ -1,9 +1,7 @@
 
 define(function (require,exports,module) {
     require("components/menu.js");
-    var router = new VueRouter();
-     var router = new VueRouter({routes:[]});
-   // router.addRoutes(routes);
+    var router = new VueRouter({routes:[]});
 
     const app = new Vue({ router }).$mount('#app')
 

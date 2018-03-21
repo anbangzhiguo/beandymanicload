@@ -11,7 +11,7 @@
 
         }
         #menu{
-            flex: 2;
+            flex: 1;
             background-color: #b3d4db;
             align-items: center;
         }
@@ -31,7 +31,7 @@
     <script src="/js/lib/jquery-1.11.2.js"></script>
     <script src="/js/lib/sea.js"></script>
     <script src="/js/lib/vue.js"></script>
-    <script src="/js/lib/vue-router.min.js"></script>
+    <script src="/js/lib/vue-router.js"></script>
     <script>
         var gMain = {
             verson:"1.0"
