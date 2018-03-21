@@ -3,6 +3,7 @@ package com.zzw.smartframework.controller;
 import com.alibaba.fastjson.JSON;
 import com.zzw.smartframework.util.ClassUtil;
 import com.zzw.smartframework.util.CommonContextUtils;
+import com.zzw.smartframework.util.ZipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -118,17 +119,25 @@ public class FrameworkController {
     }
 
     @RequestMapping(value = "/uploadJs", method = RequestMethod.POST)
+    @ResponseBody
     public String uploadJs(
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model){
         try{
             String originalFilename = file.getOriginalFilename();
 
-            File outFile = new File(servletContext.getRealPath("/")+"/WEB-INF/js/"+originalFilename);
+            File outFile = new File(servletContext.getRealPath("/")+"/WEB-INF/js/modules/"+originalFilename);
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(outFile));
             out.write(file.getBytes());
             out.flush();
             out.close();
+
+            String replace = servletContext.getRealPath("/")+"/WEB-INF/js/modules/"+originalFilename.replace(".zip", "");
+            new File(replace).mkdirs();
+
+            ZipUtil.unzip(outFile.getAbsolutePath(),replace,false);
+            outFile.delete();
+
             model.put("jsFile",originalFilename);
         }catch (Exception e){
             e.printStackTrace();

@@ -217,43 +217,34 @@ public class ZipUtil {
             if (entryFile.exists())
             {
                 //检测文件是否允许删除，如果不允许删除，将会抛出SecurityException
-                SecurityManager securityManager = new SecurityManager();
-                securityManager.checkDelete(entryFilePath);
+                //SecurityManager securityManager = new SecurityManager();
+                //securityManager.checkDelete(entryFilePath);
                 //删除已存在的目标文件
                 entryFile.delete();
             }
-
-            //写入文件
+//
+//            //写入文件
             bos = new BufferedOutputStream(new FileOutputStream(entryFile));
             bis = new BufferedInputStream(zip.getInputStream(entry));
             while ((count = bis.read(buffer, 0, bufferSize)) != -1)
             {
                 bos.write(buffer, 0, count);
             }
-            bos.flush();
-            bos.close();
         }
+        bis.close();
+        zip.close();
     }
 
     public static void main(String[] args)
     {
-        String zipPath = "d:\\ziptest\\zipPath";
-        String dir = "d:\\ziptest\\rawfiles";
-        String zipFileName = "test.zip";
-        try
-        {
-            zip(dir, zipPath, zipFileName);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
-        String zipFilePath = "D:\\ziptest\\zipPath\\test.zip";
-        String unzipFilePath = "D:\\ziptest\\zipPath";
+
+        String zipFilePath = "D:\\ziptest\\ziptest.zip";
+        String unzipFilePath = "D:\\ziptest";
         try
         {
-            unzip(zipFilePath, unzipFilePath, true);
+            unzip(zipFilePath, unzipFilePath, false);
+            new File(zipFilePath).delete();
         }
         catch (Exception e)
         {
