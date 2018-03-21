@@ -9,7 +9,7 @@ define(function (require,exports,module) {
                     url:"/excute/"+unit+"/"+method,
                     contentType:"application/json",
                     type:"POST",
-                    data:this.param,
+                    data:this.param||'{}',
                     success:function (res) {
                         alert(res);
                     }
