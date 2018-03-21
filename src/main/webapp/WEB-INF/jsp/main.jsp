@@ -30,8 +30,8 @@
     </div>
     <script src="/js/lib/jquery-1.11.2.js"></script>
     <script src="/js/lib/sea.js"></script>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="/js/lib/vue.js"></script>
+    <script src="/js/lib/vue-router.min.js"></script>
     <script>
         var gMain = {
             verson:"1.0"
