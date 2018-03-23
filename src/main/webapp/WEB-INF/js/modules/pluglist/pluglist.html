@@ -1,11 +1,8 @@
 <div>
-    <form method="POST" enctype="multipart/form-data" action="/uploadPlug">
-        <fieldset>
-            <legend>新建插件</legend>
-            文件：<input type="file" name="file" />
-            <input type="submit" value="上传" />
-        </fieldset>
-    </form>
+    <fieldset>
+        <legend>新建插件</legend>
+        文件：<input type="file" name="file" @change="tirggerFile($event)" />
+    </fieldset>
     <div>
         <p v-for="(plug, index)  in pluglist">
             {{index+1}} : {{plug.describe}}|{{plug.unit}}|{{plug.method}}|{{plug.class}}

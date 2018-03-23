@@ -1,9 +1,6 @@
 <div>
-    <form method="POST" enctype="multipart/form-data" action="/uploadJs">
-        <fieldset>
-            <legend>新建前端插件</legend>
-            文件：<input type="file" name="file" />
-            <input type="submit" value="上传" />
-        </fieldset>
-    </form>
+    <fieldset>
+        <legend>新建前端插件</legend>
+        文件：<input type="file" name="file" @change="tirggerFile($event)" />
+    </fieldset>
 </div>
